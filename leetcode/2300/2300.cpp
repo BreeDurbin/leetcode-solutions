@@ -10,7 +10,7 @@ public:
                     potions.begin(), 
                     potions.end(), 
                     spell, 
-                    [success](int spell, int potion){return (long long)spell * (long long)potion < success;})
+                    [success](int spell, int potion){return (long long)spell * potion < success;})
                 );
         }
         return ans;
