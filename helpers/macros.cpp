@@ -63,3 +63,10 @@ const double EPS = 1e-9;
 const int block = 2e3;
 inline ll pw(ll x,ll y,ll md=MOD){ll ret=1;x%=md;while(y){if(y&1)ret=ret*x%md;x=x*x%md,y>>=1;}return ret;}
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+
+static int fast_io = []() { 
+	std::ios::sync_with_stdio(false); 
+	cin.tie(nullptr); 
+	cout.tie(nullptr); 
+	return 0; 
+}();
