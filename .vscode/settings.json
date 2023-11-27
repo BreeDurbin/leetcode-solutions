@@ -11,6 +11,8 @@
         "deque": "cpp",
         "list": "cpp",
         "vector": "cpp",
-        "format": "cpp"
+        "format": "cpp",
+        "valarray": "cpp",
+        "functional": "cpp"
     }
 }
