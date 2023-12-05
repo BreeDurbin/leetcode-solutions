@@ -2,7 +2,8 @@ class Solution {
 public:
     int minPatches(vector<int>& nums, int n) {
 
-        int ans = 0, sum = 0;
+        int ans = 0;
+        long long sum = 0;
         sort(nums.begin(), nums.end());
 
         for(auto &num : nums){
