@@ -17,7 +17,6 @@ public:
             while(i - dist2 >= 0 && i + dist2 + 1 < n && s[i - dist2] == s[i + dist2 + 1]){
                 if(ans.size() < 2 * (dist2 + 1)){
                     ans = s.substr(i - dist2, 2*(dist2 + 1));
-                    cout << "HIYA:" << ans << endl;
                 }
                 dist2++;
             }
