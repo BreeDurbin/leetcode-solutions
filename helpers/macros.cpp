@@ -1,3 +1,11 @@
+typedef long long ll;
+ 
+#define pb push_back
+#define sz(x) (int)x.size()
+#define all(x) begin(x),end(x)
+#define lb(x,y) lower_bound(all(x),y)-begin(x)
+
+
 #define ll long long
 #define ull unsigned long long
 #define lll __int128
