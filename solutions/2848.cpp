@@ -1,4 +1,5 @@
-{class Solution {
+
+class Solution {
 public:
     unordered_map<int,int> mp;
     int numberOfPoints(vector<vector<int>>& nums) {
