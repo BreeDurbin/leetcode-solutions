@@ -1,0 +1,70 @@
+class Solution {
+public:
+    vector<int> minDifference(int n, int k) {
+        auto divisors = get_divisors(n);
+
+        vector<int> ans, picked;
+        
+        for(int i=0; i<divisors.size(); i++){
+            picked.push_back(divisors[i]);
+            auto cur_ans = backtrack(0, k, divisors[i], n, picked, divisors);
+            picked.pop_back();
+            if(cur_ans.size() == k){
+                if(ans.size() != k){ ans = cur_ans; }
+                sort(cur_ans.begin(), cur_ans.end());
+                sort(ans.begin(), ans.end());
+                int cur_ans_diff = cur_ans[cur_ans.size() - 1] - cur_ans[0];
+                int ans_diff = ans[ans.size() - 1] - ans[0];
+                ans =  cur_ans_diff < ans_diff ? cur_ans : ans;
+            }
+        }
+        
+
+        return ans;
+    }
+
+    vector<int> backtrack(int i, int k, long long cur_product, int target_product, vector<int>& picked, vector<int>& divs){
+        if(picked.size() == k && cur_product == target_product) return picked;
+        if(i >= divs.size() || cur_product > target_product || picked.size() == k) return {};
+
+        //dont pick 
+        vector<int> ans1 = backtrack(i+1, k, cur_product, target_product, picked, divs);
+        //pick
+        long long new_product = cur_product * divs[i];
+        picked.push_back(divs[i]);
+        vector<int> ans2 = backtrack(i, k, new_product, target_product, picked, divs);
+        picked.pop_back();
+
+        // return best result of pick and not pick
+        if(ans1.size() != k) return ans2;
+        if(ans2.size() != k) return ans1;
+        sort(ans1.begin(), ans1.end());
+        sort(ans2.begin(), ans2.end());
+        int ans1_diff = ans1[ans1.size() - 1] - ans1[0];
+        int ans2_diff = ans2[ans2.size() - 1] - ans2[0];
+        return ans1_diff < ans2_diff ? ans1 : ans2;
+    }
+
+    vector<int> get_divisors(int n){
+        int half_n = (n/2)+1;
+
+        unordered_set<int> divs;
+        
+        for(int i=1; i<half_n; i++){
+            if(n%i == 0){
+                divs.insert(i);
+                divs.insert(n/i);
+            }
+        }
+
+        vector<int> ans;
+        ans.reserve(divs.size());
+        for (auto it = divs.begin(); it != divs.end(); ) {
+            ans.push_back(move(divs.extract(it++).value()));
+        }
+
+        sort(ans.begin(), ans.end());
+
+        return ans;
+    }
+};
