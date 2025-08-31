@@ -4,23 +4,7 @@ public:
         auto divisors = get_divisors(n);
 
         vector<int> ans, picked;
-        
-        for(int i=0; i<divisors.size(); i++){
-            picked.push_back(divisors[i]);
-            auto cur_ans = backtrack(0, k, divisors[i], n, picked, divisors);
-            picked.pop_back();
-            if(cur_ans.size() == k){
-                if(ans.size() != k){ ans = cur_ans; }
-                sort(cur_ans.begin(), cur_ans.end());
-                sort(ans.begin(), ans.end());
-                int cur_ans_diff = cur_ans[cur_ans.size() - 1] - cur_ans[0];
-                int ans_diff = ans[ans.size() - 1] - ans[0];
-                ans =  cur_ans_diff < ans_diff ? cur_ans : ans;
-            }
-        }
-        
-
-        return ans;
+        return backtrack(0, k, 1, n, picked, divisors);;
     }
 
     vector<int> backtrack(int i, int k, long long cur_product, int target_product, vector<int>& picked, vector<int>& divs){
