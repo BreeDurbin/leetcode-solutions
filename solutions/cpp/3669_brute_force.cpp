@@ -22,10 +22,8 @@ public:
         // return best result of pick and not pick
         if(ans1.size() != k) return ans2;
         if(ans2.size() != k) return ans1;
-        sort(ans1.begin(), ans1.end());
-        sort(ans2.begin(), ans2.end());
-        int ans1_diff = ans1[ans1.size() - 1] - ans1[0];
-        int ans2_diff = ans2[ans2.size() - 1] - ans2[0];
+        int ans1_diff = *max_element(ans1.begin(), ans1.end())  - *min_element(ans1.begin(), ans1.end());
+        int ans2_diff = *max_element(ans2.begin(), ans2.end())  - *min_element(ans2.begin(), ans2.end());
         return ans1_diff < ans2_diff ? ans1 : ans2;
     }
 
